@@ -1,10 +1,9 @@
 [build]
-base = "Booking"
-command = "ng build"
-publish = "dist/browser"
-
+  base = "Booking"
+  command = "ng build"
+  publish = "dist/browser"
 
 [[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
+  from = "/*"
+  to = "/index.html"
+  status = 200
