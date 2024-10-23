@@ -1,0 +1,207 @@
+<div class="card shadow">
+  <div class="card-header border-bottom p-4">
+    <h5 class="card-title mb-0">
+      <i class="bi bi-wallet-fill me-2"></i>Payment Method
+    </h5>
+  </div>
+
+  <div class="card-body p-4 pb-0">
+    <div
+      ngbAccordion
+      [closeOthers]="true"
+      class="accordion accordion-icon accordion-bg-light"
+      id="accordioncircle"
+    >
+
+
+      <div class="mb-3 d-flex ms-2">
+        <input
+        class="form-check-input col-1 p-2"
+        type="checkbox"
+        value=""
+        id="heading-2"/>
+        <h6 class="col-10" id="heading-2">
+          <span class="ms-2">By Balance available : <span class="opacity-75">1000 USD</span></span>
+        </h6>
+      </div>
+
+      <div ngbAccordionItem [collapsed]="true" class="accordion-item mb-3">
+        <h6 ngbAccordionHeader class="accordion-header" id="heading-1">
+          <button
+            ngbAccordionButton
+            class="accordion-button rounded collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapse-1"
+            aria-expanded="true"
+            aria-controls="collapse-1"
+          >
+            <i class="bi bi-credit-card text-primary me-2"></i>
+            <span class="me-5">Credit or Debit Card</span>
+          </button>
+        </h6>
+        <div
+          ngbAccordionCollapse
+          id="collapse-1"
+          class="accordion-collapse collapse"
+          aria-labelledby="heading-1"
+          data-bs-parent="#accordioncircle"
+        >
+          <div class="accordion-body">
+            <div class="d-sm-flex justify-content-sm-between my-3">
+              <h6 class="mb-2 mb-sm-0">We Accept:</h6>
+              <ul class="list-inline my-0">
+                <li class="list-inline-item">
+                  <a href="javascript:void(0);"
+                    ><img
+                      src="assets/images/element/visa.svg"
+                      class="h-30px"
+                      alt=""
+                  /></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="javascript:void(0);"
+                    ><img
+                      src="assets/images/element/mastercard.svg"
+                      class="h-30px"
+                      alt=""
+                  /></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="javascript:void(0);"
+                    ><img
+                      src="assets/images/element/expresscard.svg"
+                      class="h-30px"
+                      alt=""
+                  /></a>
+                </li>
+              </ul>
+            </div>
+
+            <form
+              [formGroup]="paymentForm"
+              (ngSubmit)="onSubmit()"
+              class="row g-3"
+            >
+              <div class="col-12">
+                <label class="form-label"
+                  ><span class="h6 fw-normal">Card Number *</span></label
+                >
+                <div class="position-relative">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="cardnumber"
+                    mask="0000 0000 0000 0000"
+                    [ngClass]="{
+                      'is-invalid': submit && form['cardnumber'].errors
+                    }"
+                    placeholder="XXXX XXXX XXXX XXXX"
+                  />
+                  <img
+                    src="assets/images/element/visa.svg"
+                    class="w-30px position-absolute top-50 end-0 translate-middle-y me-2 d-none d-sm-block"
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label"
+                  ><span class="h6 fw-normal">Expiration date *</span></label
+                >
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="month"
+                    maxlength="2"
+                    mask="00"
+                    [ngClass]="{ 'is-invalid': submit && form['month'].errors }"
+                    placeholder="Month"
+                  />
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="year"
+                    maxlength="4"
+                    mask="0000"
+                    [ngClass]="{ 'is-invalid': submit && form['year'].errors }"
+                    placeholder="Year"
+                  />
+                </div>
+              </div>
+              <!--Cvv code  -->
+              <div class="col-md-6">
+                <label class="form-label"
+                  ><span class="h6 fw-normal">CVV / CVC *</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="cvv"
+                  maxlength="3"
+                  mask="000"
+                  [ngClass]="{ 'is-invalid': submit && form['cvv'].errors }"
+                  placeholder="xxx"
+                />
+                <div class="invalid-feedback">
+                  cvv must be a `number` type, but the final value was: `NaN`
+                  (cast from the value `""`).
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label"
+                  ><span class="h6 fw-normal">Name on Card *</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="name"
+                  aria-label="name of card holder"
+                  [ngClass]="{ 'is-invalid': submit && form['name'].errors }"
+                  placeholder="Enter card holder name"
+                />
+                <div class="invalid-feedback">
+                  Please enter card holder name
+                </div>
+              </div>
+              <div class="col-12">
+                <div
+                  class="d-sm-flex justify-content-sm-between align-items-center"
+                >
+                  <h6>
+                    {{ currencyType }}1800
+                    <span class="small fs-6">Due now</span>
+                  </h6>
+                  <button type="submit" class="btn btn-primary mb-0">
+                    Pay Now
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-4 pt-0">
+    <div class="mb-0 d-flex justify-content-evenly">
+      <input
+      class="ms-1 form-check-input p-2"
+      type="checkbox"
+      value=""
+      id="hotelType1"/>
+      <p class="m-0 text-danger ">
+        Yes, I accept the cancellation policy, Booking notes,
+        and Terms & Conditions of Hotelsxml.
+      </p>
+
+    </div>
+    <div class="mb-0 p-2 mt-3">
+      <a class="btn btn-success" routerLink="/booking-confirmed">Complete Booking</a>
+    </div>
+  </div>
+</div>

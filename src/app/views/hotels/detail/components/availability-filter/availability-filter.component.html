@@ -1,0 +1,66 @@
+<div class="offcanvas-body p-2">
+  <div class="bg-light p-4 rounded w-100">
+    <form class="row g-1">
+
+      <div class="col-md-6 col-lg-3">
+        <div class="form-size-lg form-fs-md">
+          <label class="form-label">Location</label>
+          <select
+            selectFormInput
+            class="form-select js-choice"
+            data-search-enabled="true"
+          >
+            <option value="">Select location</option>
+            <option selected>San Jacinto, USA</option>
+            <option>North Dakota, Canada</option>
+            <option>West Virginia, Paris</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="form-fs-md">
+          <label class="form-label">Check in - out</label>
+          <input
+            type="text"
+            mwlFlatpickr
+            [flatpickrOptions]="{ mode: 'range', dateFormat: 'd M' }"
+            class="form-control form-control-lg flatpickr"
+            data-mode="range"
+            placeholder="Select date"
+            value="19 Sep to 28 Sep"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="form-fs-md">
+          <div class="w-100">
+            <label class="form-label">Guests & rooms</label>
+            <div ngbDropdown class="dropdown guest-selector me-2">
+              <input
+                type="text"
+                class="form-guest-selector form-control form-control-lg selection-result"
+                value="1 room, 2 adult, 0 child"
+              />
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="form-fs-md">
+          <label class="form-label">Nationality</label>
+          <input
+            type="text"
+            class="form-control form-control-lg flatpickr"
+            data-mode="range"
+            placeholder="Select Nationality"
+            value="Nationality"
+          />
+        </div>
+    </div>
+    </form>
+  </div>
+</div>

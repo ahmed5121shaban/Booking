@@ -1,0 +1,155 @@
+<div class="container row m-auto">
+  <div class="col-12">
+    <div class="card border rounded-3">
+<!--       <div class="card-header border-bottom">
+        <h5 class="card-header-title">Invoice history</h5>
+      </div> -->
+
+      <div class="card-body">
+        <div class="row g-3 align-items-center justify-content-between mb-3">
+          <div class="col-md-5 mt-3">
+            <button
+            class="btn px-3 py-2 btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#ticket"
+            type="button"
+          >
+          <i class="fa-solid fa-check"></i> Add new Tickets
+          </button>
+          </div>
+        </div>
+
+        <div class="table-responsive border-0">
+          <table class="table align-middle p-4 mb-0 table-hover table-shrink">
+            <thead class="table-light">
+              <tr>
+                <th scope="col" class="border-0 rounded-start">Ticket Id</th>
+                <th scope="col" class="border-0">Subject</th>
+                <th scope="col" class="border-0">Created</th>
+                <th scope="col" class="border-0">Status</th>
+                <th scope="col" class="border-0 rounded-end">Action</th>
+              </tr>
+            </thead>
+
+            <tbody class="border-top-0">
+              @for (item of invoiceHistoryData; track $index;let i = $index) {
+                <tr>
+                  <td># 1012</td>
+                  <td>HCN PLEASE</td>
+                  <td ngbDropdown>
+                    <div class="d-flex flex-column">
+                      <span>
+                        27/02/2024
+                      </span>
+                      <span>08:02:38</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div
+                      class="badge"
+
+                    >
+                      @if ((i/2)==0) {<div class="bg-success rounded-2 px-3 py-2  text-light">Open</div>}
+                      @else{<div class="bg-danger rounded-2 px-3 py-2  text-light">Close</div>}
+                    </div>
+                  </td>
+
+                  <td>
+                    @if (i==0) {
+                      <a type="button" data-bs-toggle="modal" class="text-primary text-decoration-underline" data-bs-target="#invoice">Reply</a>
+                    }@else{
+                    <a type="button" data-bs-toggle="modal" class="text-primary text-decoration-underline" data-bs-target="#invoice">View</a>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card-footer pt-0">
+        <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
+          <p class="mb-sm-0 text-center text-sm-start">
+            Showing 1 to 8 of 20 entries
+          </p>
+
+          <nav
+            class="mb-sm-0 d-flex justify-content-center mb-0"
+            aria-label="navigation"
+          >
+            <ngb-pagination
+              [collectionSize]="150"
+              [page]="page"
+              [maxSize]="2"
+              size="sm"
+              class="pagination pagination-sm pagination-primary-soft"
+            >
+              <ng-template ngbPaginationPrevious> Prev </ng-template>
+              <ng-template ngbPaginationNext> Next </ng-template>
+            </ngb-pagination>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="invoice" tabindex="-1" aria-labelledby="invoice" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="ticket" tabindex="-1" aria-labelledby="ticket" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Support Ticket</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row mt-3">
+          <div class="col-6">
+            <label for="Category">Category</label>
+            <select type="text" class="form-select" id="Category" placeholder="Category" aria-label="Category">
+              <option value="">Select Category</option>
+              <option value="special">Special Request</option>
+              <option value="send">Send Into To Hotel</option>
+              <option value="clients">Clients To Hotel Support</option>
+              <option value="others">Others</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label for="Subject">Subject</label>
+            <input type="text" class="form-control" id="Subject" placeholder="Subject" aria-label="Subject">
+          </div>
+          <div class="col-12 mt-3">
+            <label for="Message">Message</label>
+            <textarea type="" class="form-control py-4" placeholder="Message" id="Message" aria-label="Last name"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,366 @@
+<section class="pt-0">
+  <div class="container vstack gap-4">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="fs-4 mb-0"><i class="bi bi-gear fa-fw me-1"></i>Edit Profile</h1>
+      </div>
+    </div>
+
+    <div class="bg-light rounded p-3">
+      <div class="overflow-hidden">
+        <h6>Complete Agent Document</h6>
+        <div class="progress progress-sm bg-success bg-opacity-10">
+          <ngb-progressbar
+            class="progress-bar bg-success aos"
+            type="warning"
+            [value]="100"
+            height="5px"
+            [animated]="true"
+            data-aos="slide-right"
+            data-aos-delay="200"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out"
+            style="width: 100%"
+            aria-valuenow="85"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <span class="progress-percent-simple h6 fw-light ms-auto mt-n1"
+              >100%</span
+            >
+          </ngb-progressbar>
+        </div>
+        <p class="mb-0">
+          Get the best out of booking by adding the remaining details!
+        </p>
+      </div>
+
+      <div class="bg-body rounded p-3 mt-3">
+        <ul class="list-inline hstack flex-wrap gap-2 justify-content-between mb-0">
+          <li class="list-inline-item h6 fw-normal mb-0">
+            <a href="javascript:void(0);" class="text-success"
+              ><i class="bi bi-check-circle-fill text-success me-2"></i>Verified
+              Email</a
+            >
+          </li>
+          <li class="list-inline-item h6 fw-normal mb-0">
+            <a href="javascript:void(0);" class="text-success"
+              ><i class="bi bi-check-circle-fill text-success me-2"></i>Verified
+              Mobile Number</a
+            >
+          </li>
+          <li class="list-inline-item h6 fw-normal mb-0">
+            <a href="javascript:void(0);" class="text-success"
+              ><i class="bi bi-plus-circle-fill me-2"></i>Complete Agent Document</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+  <div class="card border">
+    <div class="card-header border-bottom">
+      <h4 class="card-header-title">Agent Information</h4>
+    </div>
+
+
+
+    <div class="card-body">
+      <form class="row g-3">
+        <div class="col-12">
+          <label class="form-label"
+            >Upload your profile photo<span class="text-danger">*</span></label
+          >
+          <div class="d-flex align-items-center">
+            <label
+              class="position-relative me-4"
+              for="uploadfile-1"
+              title="Replace this pic"
+            >
+              <span class="avatar avatar-xl">
+                <img
+                  id="uploadfile-1-preview"
+                  class="avatar-img rounded-2 border border-white border-3 shadow"
+                  src="assets/images/avatar/01.jpg"
+                  alt=""
+                />
+              </span>
+            </label>
+
+            <label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-1"
+              >Update your Agent Logo</label
+            >
+            <input id="uploadfile-1" class="form-control d-none" type="file" />
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label"
+            >Full Name<span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            value="Jacqueline Miller"
+            placeholder="Enter your full name"
+          />
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label"
+            >Email address<span class="text-danger">*</span></label
+          >
+          <input
+            type="email"
+            class="form-control"
+            value="hello@gmail.com"
+            placeholder="Enter your email id"
+          />
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label"
+            >Mobile number<span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            value="222 555 666"
+            placeholder="Enter your mobile number"
+          />
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label"
+            >Company Name<span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control flatpickr"
+            value="Company Name"
+            placeholder="Company Name"
+          />
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label"
+            >Company Reg. No.<span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control flatpickr"
+            value="Company Reg. No."
+            placeholder="Company Reg. No"
+          />
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label"
+            >Nature Of Business<span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            value="Nature Of Business"
+            placeholder="Nature Of Business"
+          />
+        </div>
+
+
+        <div class="col-md-4">
+          <label class="form-label"
+            >Address<span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            value="Address"
+            placeholder="Enter your Address"
+          />
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label"
+            >City<span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            value="City"
+            placeholder="Enter your City"
+          />
+        </div>
+
+
+        <div class="col-md-4">
+          <label class="form-label"
+            >Country<span class="text-danger">*</span></label
+          >
+          <select class="form-select js-choice">
+            <option value="">Select your country</option>
+            <option>USA</option>
+            <option selected>Paris</option>
+            <option>India</option>
+            <option>UK</option>
+          </select>
+        </div>
+
+
+
+
+
+
+        <div class="col-md-4">
+          <label class="form-label"
+            >Currency<span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            value="Currency"
+            placeholder="Enter your Currency"
+          />
+        </div>
+
+
+
+        <div class="col-md-4">
+          <label class="form-label"
+            >Pincode/Zipcode<span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            value="Pincode/Zipcode"
+            placeholder="Enter your Pincode/Zipcode"
+          />
+        </div>
+
+
+        <div class="col-md-4">
+          <label class="form-label"
+            >Website<span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            value="Website"
+            placeholder="Enter your Website"
+          />
+        </div>
+
+
+
+
+
+        <div class="col-12 text-end">
+          <a href="javascript:void(0);" class="btn btn-primary mb-0"
+            >Save Changes</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card border">
+    <div class="card-header border-bottom">
+      <h4 class="card-header-title">Update Password</h4>
+      <p class="mb-0">
+        Your current email address is
+        <span class="text-primary">example&#64;gmail.com</span>
+      </p>
+    </div>
+
+    <form class="card-body" [formGroup]="updatePasswords">
+      <div class="mb-3">
+        <label class="form-label">Current password</label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            type="{{ isShowPassword ? 'text' : 'password' }}"
+            formControlName="currentPassword"
+            [ngClass]="{
+              'is-invalid':
+                updatePasswords.get('currentPassword')?.errors && formSubmit
+            }"
+            type="password"
+            placeholder="Enter current password"
+          />
+          <span class="input-group-text p-0 bg-transparent">
+            <i
+              class="fakepasswordicon fas cursor-pointer p-2"
+              type="password"
+              (click)="isShowPassword = !isShowPassword"
+              [ngClass]="isShowPassword ? 'fa-eye' : 'fa-eye-slash'"
+            ></i>
+          </span>
+          <div class="invalid-feedback">Please enter your current password</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"> Enter new password</label>
+        <div class="input-group">
+          <input
+            class="form-control fakepassword"
+            type="{{ isShowPassword1 ? 'text' : 'password' }}"
+            formControlName="password"
+            [ngClass]="{
+              'is-invalid': updatePasswords.get('password')?.errors && formSubmit
+            }"
+            placeholder="Enter new password"
+            type="password"
+            id="psw-input"
+          />
+          <span class="input-group-text p-0 bg-transparent">
+            <i
+              class="fakepasswordicon fas cursor-pointer p-2"
+              type="password"
+              (click)="isShowPassword1 = !isShowPassword1"
+              [ngClass]="isShowPassword1 ? 'fa-eye' : 'fa-eye-slash'"
+            ></i>
+          </span>
+          <div class="invalid-feedback">Please enter your new password</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Confirm new password</label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            type="{{ isShowPassword2 ? 'text' : 'password' }}"
+            formControlName="confirmpassword"
+            [ngClass]="{
+              'is-invalid':
+                updatePasswords.get('confirmpassword')?.touched &&
+                updatePasswords.errors?.['notSame']
+            }"
+            type="password"
+            placeholder="Confirm new password"
+          />
+          <span class="input-group-text p-0 bg-transparent">
+            <i
+              class="fakepasswordicon fas cursor-pointer p-2"
+              type="password"
+              (click)="isShowPassword2 = !isShowPassword2"
+              [ngClass]="isShowPassword2 ? 'fa-eye' : 'fa-eye-slash'"
+            ></i>
+          </span>
+          <div class="invalid-feedback">
+            New password and confirm password doesn't match
+          </div>
+        </div>
+      </div>
+      <div class="text-end">
+        <a
+          href="javascript:void(0);"
+          (click)="onSubmit()"
+          class="btn btn-primary mb-0"
+          >Change Password</a
+        >
+      </div>
+    </form>
+  </div>
+

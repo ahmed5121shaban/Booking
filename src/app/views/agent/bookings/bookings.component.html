@@ -1,0 +1,998 @@
+<section class="pt-0">
+  <div class="container-fluid vstack gap-4">
+    <div class="row m-auto container">
+      <div class="col-12">
+        <h1 class="fs-4 mb-0">
+          <i class="bi bi-bookmark-heart fa-fw me-1"></i>My Bookings - Manage your booking with advance filters!
+        </h1>
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="col-12">
+        <div class="card border m-auto container  mb-5">
+          <div class="card-header border-bottom">
+            <h5 class="card-header-title">
+              <span
+                class="badge bg-primary bg-opacity-10 text-primary ms-2"
+                >20 Booking</span
+              >
+            </h5>
+          </div>
+
+          <div class="card-body">
+            <div class="row g-1 align-items-center mb-3">
+
+              <!-- Booking ID Input -->
+              <div class="col-md-3 col-12">
+                <form class="rounded position-relative">
+                  <input
+                    class="form-control pe-5"
+                    type="search"
+                    placeholder="Booking ID"
+                    aria-label="Search"
+                  />
+                  <button
+                    class="btn border-0 px-3 py-0 position-absolute top-50 end-0 translate-middle-y"
+                    type="submit"
+                  >
+                    <i class="fas fa-search fs-6"></i>
+                  </button>
+                </form>
+              </div>
+
+              <!-- Guest Name Input -->
+              <div class="col-md-3 col-12">
+                <form class="rounded position-relative">
+                  <input
+                    class="form-control pe-5"
+                    type="search"
+                    placeholder="Guest Name"
+                    aria-label="Search"
+                  />
+                  <button
+                    class="btn border-0 px-3 py-0 position-absolute top-50 end-0 translate-middle-y"
+                    type="submit"
+                  >
+                    <i class="fas fa-search fs-6"></i>
+                  </button>
+                </form>
+              </div>
+
+              <!-- Booking Status Select -->
+              <div class="col-md-2 col-12">
+                <form>
+                  <select class="form-select js-choice" aria-label="Booking Status">
+                    <option value="">Booking Status</option>
+                    <option>Complete/Paid</option>
+                    <option>Confirm/Unpaid</option>
+                    <option>Cancelled</option>
+                  </select>
+                </form>
+              </div>
+
+              <!-- Check In Status Select -->
+              <div class="col-md-2 col-12">
+                <form>
+                  <select class="form-select js-choice" aria-label="Check In Status">
+                    <option value="">Check In Status</option>
+                    <option>Past Check Ins</option>
+                    <option>Future Check Ins</option>
+                    <option>Active Stay</option>
+                  </select>
+                </form>
+              </div>
+
+              <!-- Reset Button -->
+              <div class=" col-lg-1">
+                <button class="reset-button btn btn-warning">Reset</button>
+              </div>
+
+              <!-- Search Button -->
+              <div class="col-lg-1">
+                <button class="search-button btn btn-primary">Search</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+            <div class="table-responsive border-0 m-auto" style="width:95%">
+              <table
+                class="table align-middle p-4 mb-0 table-hover table-shrink"
+              >
+                <thead class="table-light">
+                  <tr>
+                    <th scope="col" class="border-0 rounded-start">Booking Id</th>
+                    <th scope="col" class="border-0">Guest Name</th>
+                    <th scope="col" class="border-0">Check in date</th>
+                    <th scope="col" class="border-0">City</th>
+                    <th scope="col" class="border-0">Cancellation Deadline</th>
+                    <th scope="col" class="border-0">Status</th>
+                    <th scope="col" class="border-0">Payment</th>
+                    <th scope="col" class="border-0">Total Cost</th>
+                    <th scope="col" class="border-0 rounded-end">Action</th>
+
+                  </tr>
+                </thead>
+
+                <tbody class="border-top-0">
+                  @for (item of bookingsData; track $index) {
+                    <tr>
+                      <td>
+                        <div class="d-flex flex-column">
+                          <p class="mb-0 fw-semibold">
+                            {{item.id}}
+                          </p>
+                          <span class="opacity-75 fw-semibold" style="font-size: 13px;">
+                              {{item.registerDate}}
+                          </span>
+                        </div>
+                      </td>
+                      <td>
+                          <p class="mb-0 ">
+                            {{ item.name }}<br>{{ item.name }}
+                          </p>
+                      </td>
+                      <td>
+                        <h6 class="mb-0 fw-light">{{ item.date }}</h6>
+                      </td>
+                      <td>{{ item.city }}</td>
+                      <td>
+                        <p
+                          class="mb-0 fw-semibold"
+                          [ngClass]="{'text-success':item.Cancellation=='Free Cancellation till 7 Jan 2022',
+                            'text-danger':item.Cancellation=='Non Refundable'
+                          }"
+                          >{{item.Cancellation}}</p
+                        >
+                      </td>
+
+
+
+
+                      <td>
+                        <div
+                        class="badge fw-semibold"
+                          [ngClass]="{
+                            'bg-success':
+                              item.booking === 'Completed',
+                            'bg-orange':
+                              item.booking === 'Confirmed'
+                          }"
+                        >
+                          {{ item.booking }}
+                        </div>
+                      </td>
+
+                      <td>
+                        <div
+                          class="badge bg-opacity-10 fw-semibold"
+                          [ngClass]="{
+                            'bg-success text-success':
+                              item.status === 'Paid',
+                            'bg-orange text-orange': item.status === 'UnPaid',
+                          }"
+                        >
+                          {{ item.status }}
+                        </div>
+                      </td>
+
+
+                      <td>
+                        <p
+                          class="mb-0 fw-semibold"
+                          >{{item.Total}} <span class="fw-normal" style="font-size: .9rem;">USD</span></p
+                        >
+                      </td>
+                      <td>
+                        <div class="d-flex">
+                          <a type="button" data-bs-toggle="modal" data-bs-target="#eye">
+                            <i class="fa-regular fa-eye me-1 position-relative" id="trophy-icon">
+                              <span class="popover-box mb-1 shadow bg-primary text-light border rounded p-1" style="font-size: 13px;">
+                                Booking Detail
+                              </span>
+                            </i>
+                          </a>
+                          <a type="button" data-bs-toggle="modal" data-bs-target="#headset"
+                          ><i class="fa-solid fa-headset me-1 position-relative" id="message-icon">
+                            <span class="message-box mb-1 shadow bg-primary text-light border rounded p-1" style="font-size: 13px;">
+                              Support Message
+                            </span>
+                          </i>
+                        </a>
+                          @if (item.visaPay)
+                          {
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#creditcard">
+                            <i class="fa-regular fa-credit-card me-1 position-relative" id="visa-icon">
+                              <span class="visa-box mb-1 shadow bg-primary text-light border rounded p-1" style="font-size: 13px;">
+                                Pay Booking
+                              </span>
+                            </i>
+                            </a>
+                        }
+                        @if (item.booking == 'Confirmed')
+                        {
+                          <a type="button" data-bs-toggle="modal" data-bs-target="#canceled">
+                            <i class="fa-solid fa-rectangle-xmark text-danger position-relative" id="cancel-icon">
+                              <span class="cancel-box mb-1 shadow bg-danger text-light border rounded p-1" style="font-size: 13px;">
+                                Cancel Booking
+                              </span>
+                            </i>
+                          </a>
+                      }
+
+                        </div>
+
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card-footer pt-0 m-auto" style="width:90%">
+            <div
+              class="d-sm-flex justify-content-sm-between align-items-sm-center"
+            >
+              <p class="mb-sm-0 text-center text-sm-start">
+                Showing 1 to 8 of 20 entries
+              </p>
+
+              <nav
+                class="mb-sm-0 d-flex justify-content-center mb-0"
+                aria-label="navigation"
+              >
+                <ngb-pagination
+                  [collectionSize]="150"
+                  [page]="page"
+                  [maxSize]="2"
+                  size="sm"
+                  class="pagination pagination-sm pagination-primary-soft"
+                >
+                  <ng-template ngbPaginationPrevious> Prev </ng-template>
+                  <ng-template ngbPaginationNext> Next </ng-template>
+                </ngb-pagination>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+
+<!--Eye icon modal-->
+<div class="modal fade" id="eye" tabindex="-1" aria-labelledby="eye" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Booking Detail</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="card bg-light overflow-hidden px-sm-5">
+
+              <div class="card-body row justify-content-between">
+                <a class="m-0 btn btn-outline-primary mt-2 col-lg-2 col-md-6 fs-6 fw-light">View Voucher</a>
+                <a class="m-0 btn btn-outline-primary mt-2 col-lg-2 col-md-6 fs-6 fw-light">Cancel Booking</a>
+                <a class="m-0 btn btn-outline-primary mt-2 col-lg-2 col-md-6 fs-6 fw-light">Pay Booking</a>
+                <a class="m-0 btn btn-outline-primary mt-2 col-lg-2 col-md-6 fs-6 fw-light">View Invoice</a>
+                <a class="m-0 btn btn-outline-primary mt-2 col-lg-3 col-md-12 fs-6 fw-light">Message Support</a>
+              </div>
+
+        </div>
+
+        <div class="row g-2 g-lg-3 mt-4">
+        <div class="card shadow col-xl-8">
+          <div class="card-header p-4 border-bottom">
+            <h5 class="mb-0">
+              <i class="fa-solid fa-hotel me-2"></i>Hotel Information
+            </h5>
+          </div>
+
+          <div class="card-body p-4">
+            <div class="card mb-4">
+              <div class="row align-items-center">
+                <div class="col-sm-6 col-md-3">
+                  <img
+                    src="assets/images/category/hotel/4by3/02.jpg"
+                    class="card-img"
+                    alt=""
+                  />
+                </div>
+
+                <div class="col-sm-6 col-md-9">
+                  <div class="card-body pt-3 pt-sm-0 p-0">
+                    <div class="mb-2">
+                      <ul class="list-inline mb-0 me-2">
+                      <li class="list-inline-item me-0 small">
+                        <i class="fa-solid fa-star text-warning me-1"></i>
+                      </li>
+                      <li class="list-inline-item me-0 small">
+                        <i class="fa-solid fa-star text-warning me-1"></i>
+                      </li>
+                      <li class="list-inline-item me-0 small">
+                        <i class="fa-solid fa-star text-warning me-1"></i>
+                      </li>
+                      <li class="list-inline-item me-0 small">
+                        <i class="fa-solid fa-star text-warning me-1"></i>
+                      </li>
+                      <li class="list-inline-item me-0 small">
+                        <i class="fa-solid fa-star-half-alt text-warning me-1"></i>
+                      </li>
+
+                    </ul></div>
+                    <h5 class="card-title">
+                      <a href="javascript:void(0);">Pride moon Village Resort & Spa</a>
+                    </h5>
+                    <div class="small mb-2 d-flex">
+
+                      <div>
+                        <i class="bi bi-geo-alt me-2"></i>5855 W Century Blvd, Los Angeles
+                        - 90045
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-4">
+              <div class="col-lg-4">
+                <div class="bg-light py-3 px-4 rounded-3">
+                  <h6 class="fw-light small mb-1">Check-in</h6>
+                  <h5 class="mb-1">4 March 2022</h5>
+                  <small><i class="bi bi-alarm me-1"></i>02:00 pm</small>
+                </div>
+              </div>
+
+              <div class="col-lg-4">
+                <div class="bg-light py-3 px-4 rounded-3">
+                  <h6 class="fw-light small mb-1">Check out</h6>
+                  <h5 class="mb-1">8 March 2022</h5>
+                  <small><i class="bi bi-alarm me-1"></i>12:00 pm</small>
+                </div>
+              </div>
+
+              <div class="col-lg-4">
+                <div class="bg-light py-3 px-2 rounded-3">
+                  <h6 class="fw-light small mb-1">Rooms & Guests</h6>
+                  <h6 class="mb-1">1 room, 2 adults, 0 child</h6>
+                  <small
+                    ><i class="bi bi-brightness-high me-1"></i>3 Nights</small
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class=" mt-4">
+              <div
+                class="card-header d-md-flex justify-content-md-between"
+              >
+                <h6 class="card-title mb-0">Deluxe Pool View with Breakfast</h6>
+              </div>
+
+              <div class="card border card-body">
+                <h6>Price Included</h6>
+
+                <ul class="mb-0">
+                  <li class="h6 fw-light d-flex mb-0">
+                    <i class="fa-solid fa-utensils me-2 text-success"></i>Free
+                    Breakfast and Lunch/Dinner.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="card border text-light card-body mt-2 bg-danger">
+                <h6 class="text-light"><i class="fa-solid fa-triangle-exclamation  me-2"></i>Cancellation Policy</h6>
+
+                <ul class="mb-0">
+                  <li class=" h6 fw-light text-light d-flex mb-0">
+                    This is a fully non-refundable booking. No cancellations, or amendments, once it is confirmed. This booking must be made immediately and paid.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="card shadow">
+            <div class="card-header border-bottom p-4">
+              <h5 class="card-title mb-0">
+                <i class="bi bi-people-fill me-2"></i>Guest Details
+              </h5>
+            </div>
+
+            <div class="card-body p-4">
+              <form class="row g-4">
+                <div class="col-12">
+                   @for (room of rooms; track $index;let roomIndex = $index) {
+                  <div class="mt-3">
+                    <div class="bg-light rounded-2 px-4 py-3">
+                      <h6 class="mb-0">Room {{ roomIndex + 1 }} : <span class="opacity-75">Room Type</span></h6>
+                    </div>
+                     @for (guest of room.guests; track $index;let guestIndex = $index) {
+                    <div>
+                      <div class="row align-items-center mt-3">
+                        <div class="col-md-5">
+                          <label class="form-label">First Name</label>
+                          <input
+                            type="text"
+                            class="form-control form-control-lg"
+                            placeholder="Enter first name"
+                            [(ngModel)]="guest.firstName"
+                            name="firstName{{ roomIndex }}_{{ guestIndex }}"
+                          />
+                        </div>
+
+                        <div class="col-md-5">
+                          <label class="form-label">Last Name</label>
+                          <input
+                            type="text"
+                            class="form-control form-control-lg"
+                            placeholder="Enter last name"
+                            [(ngModel)]="guest.lastName"
+                            name="lastName{{ roomIndex }}_{{ guestIndex }}"
+                          />
+                        </div>
+                        @if (guestIndex > 0) {
+                          <div class="col-md-2">
+                            <i class="fa-solid fa-xmark fs-5 text-danger" (click)="deleteGuest(roomIndex, guestIndex)" style="cursor: pointer;"></i>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  }
+                    <hr />
+                  </div>
+                  @if (canAddGuest(roomIndex)) {
+                    <div class="col-12">
+                      <a href="javascript:void(0);" class="btn btn-link mb-0 p-0" (click)="addGuest(roomIndex)">
+                        <i class="fa-solid fa-plus me-2"></i>Add New Guest
+                      </a>
+                    </div>
+                  }
+                }
+
+                </div>
+
+                <div class="col-md-5">
+                  <label class="form-label">Email id</label>
+                  <input
+                    type="email"
+                    class="form-control form-control-lg"
+                    placeholder="Enter your email"
+                  />
+                  <div id="emailHelp" class="form-text">
+                    (Booking voucher will be sent to this email ID)
+                  </div>
+                </div>
+
+                <div class="col-md-5">
+                  <label class="form-label">Mobile number</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder="Enter your mobile number"
+                  />
+                </div>
+              </form>
+              <div class="card border mt-4">
+                <div class="card-header border-bottom mb-0">
+                  <h5 class="card-title mb-2">Special request</h5>
+                </div>
+
+                <div class="card-body">
+                  <form class="hstack flex-wrap pb-1 gap-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="hotelType1"
+                      />
+                      <label class="form-check-label" for="hotelType1">Smoking room</label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="hotelType1"
+                      />
+                      <label class="form-check-label" for="hotelType1">Late check-in</label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="hotelType1"
+                      />
+                      <label class="form-check-label" for="hotelType1">Early check-in</label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="hotelType1"
+                      />
+                      <label class="form-check-label" for="hotelType1">Clients Vip</label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="hotelType1"
+                      />
+                      <label class="form-check-label" for="hotelType1">Large bed</label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="hotelType1"
+                      />
+                      <label class="form-check-label" for="hotelType1">Twin beds</label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="hotelType1"
+                      />
+                      <label class="form-check-label" for="hotelType1">Honeymoon Couple</label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="hotelType1"
+                      />
+                      <label class="form-check-label" for="hotelType1">Connecting Room</label>
+                    </div>
+
+                    <!-- Add other special requests as needed -->
+                  </form>
+                  <hr class="mb-0">
+                  <p class=" p-2 pt-3 text-danger">Note: Special Requests are not guaranteed and are subject to availability upon check-in at the hotel. Please get in touch with our Customer Support if you'd like to add guaranteed services.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- <div class="card shadow">
+            <div class="card-header border-bottom p-4">
+              <h5 class="card-title mb-0">
+                <i class="bi bi-wallet-fill me-2"></i>Payment Method
+              </h5>
+            </div>
+
+            <div class="card-body p-4 pb-0">
+              <div
+                ngbAccordion
+                [closeOthers]="true"
+                class="accordion accordion-icon accordion-bg-light"
+                id="accordioncircle"
+              >
+
+
+                <div class="mb-3 d-flex ms-2">
+                  <input
+                  class="form-check-input col-1 p-2"
+                  type="checkbox"
+                  value=""
+                  id="heading-2"/>
+                  <h6 class="col-10" id="heading-2">
+                    <span class="ms-2">By Balance available : <span class="opacity-75">1000 USD</span></span>
+                  </h6>
+                </div>
+
+                <div ngbAccordionItem [collapsed]="true" class="accordion-item mb-3">
+                  <h6 ngbAccordionHeader class="accordion-header" id="heading-1">
+                    <button
+                      ngbAccordionButton
+                      class="accordion-button rounded collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse-1"
+                      aria-expanded="true"
+                      aria-controls="collapse-1"
+                    >
+                      <i class="bi bi-credit-card text-primary me-2"></i>
+                      <span class="me-5">Credit or Debit Card</span>
+                    </button>
+                  </h6>
+                  <div
+                    ngbAccordionCollapse
+                    id="collapse-1"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="heading-1"
+                    data-bs-parent="#accordioncircle"
+                  >
+                    <div class="accordion-body">
+                      <div class="d-sm-flex justify-content-sm-between my-3">
+                        <h6 class="mb-2 mb-sm-0">We Accept:</h6>
+                        <ul class="list-inline my-0">
+                          <li class="list-inline-item">
+                            <a href="javascript:void(0);"
+                              ><img
+                                src="assets/images/element/visa.svg"
+                                class="h-30px"
+                                alt=""
+                            /></a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a href="javascript:void(0);"
+                              ><img
+                                src="assets/images/element/mastercard.svg"
+                                class="h-30px"
+                                alt=""
+                            /></a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a href="javascript:void(0);"
+                              ><img
+                                src="assets/images/element/expresscard.svg"
+                                class="h-30px"
+                                alt=""
+                            /></a>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <form
+                        [formGroup]="paymentForm"
+                        (ngSubmit)="onSubmit()"
+                        class="row g-3"
+                      >
+                        <div class="col-12">
+                          <label class="form-label"
+                            ><span class="h6 fw-normal">Card Number *</span></label
+                          >
+                          <div class="position-relative">
+                            <input
+                              type="text"
+                              class="form-control"
+                              formControlName="cardnumber"
+                              mask="0000 0000 0000 0000"
+                              [ngClass]="{
+                                'is-invalid': submit && form['cardnumber'].errors
+                              }"
+                              placeholder="XXXX XXXX XXXX XXXX"
+                            />
+                            <img
+                              src="assets/images/element/visa.svg"
+                              class="w-30px position-absolute top-50 end-0 translate-middle-y me-2 d-none d-sm-block"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <label class="form-label"
+                            ><span class="h6 fw-normal">Expiration date *</span></label
+                          >
+                          <div class="input-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              formControlName="month"
+                              maxlength="2"
+                              mask="00"
+                              [ngClass]="{ 'is-invalid': submit && form['month'].errors }"
+                              placeholder="Month"
+                            />
+                            <input
+                              type="text"
+                              class="form-control"
+                              formControlName="year"
+                              maxlength="4"
+                              mask="0000"
+                              [ngClass]="{ 'is-invalid': submit && form['year'].errors }"
+                              placeholder="Year"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <label class="form-label"
+                            ><span class="h6 fw-normal">CVV / CVC *</span></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="cvv"
+                            maxlength="3"
+                            mask="000"
+                            [ngClass]="{ 'is-invalid': submit && form['cvv'].errors }"
+                            placeholder="xxx"
+                          />
+                          <div class="invalid-feedback">
+                            cvv must be a `number` type, but the final value was: `NaN`
+                            (cast from the value `""`).
+                          </div>
+                        </div>
+
+                        <div class="col-12">
+                          <label class="form-label"
+                            ><span class="h6 fw-normal">Name on Card *</span></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="name"
+                            aria-label="name of card holder"
+                            [ngClass]="{ 'is-invalid': submit && form['name'].errors }"
+                            placeholder="Enter card holder name"
+                          />
+                          <div class="invalid-feedback">
+                            Please enter card holder name
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <div
+                            class="d-sm-flex justify-content-sm-between align-items-center"
+                          >
+                            <h6>
+                              {{ currencyType }}1800
+                              <span class="small fs-6">Due now</span>
+                            </h6>
+                            <button type="submit" class="btn btn-primary mb-0">
+                              Pay Now
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 pt-0">
+              <div class="mb-0 d-flex justify-content-evenly">
+                <input
+                class="ms-1 form-check-input p-2"
+                type="checkbox"
+                value=""
+                id="hotelType1"/>
+                <p class="m-0 text-danger ">
+                  Yes, I accept the cancellation policy, Booking notes,
+                  and Terms & Conditions of Hotelsxml.
+                </p>
+
+              </div>
+              <div class="mb-0 p-2 mt-3">
+                <a class="btn btn-success" routerLink="/booking-confirmed">Complete Booking</a>
+              </div>
+            </div>
+          </div> -->
+
+
+
+
+        </div>
+
+        <aside class="col-xl-4 sticky-element" ng-sticky
+        data-margin-top="100"
+        data-margin-bottom="100">
+          <div class="card shadow rounded-2 py-4">
+            <div class="ms-2 row g-2">
+              <h6 class=" mb-0 p-2 bg-light rounded-2 col-lg-11 border border-1">Booking ID: HXM0016</h6>
+              <h6 class=" mb-0 p-2 bg-light rounded-2 col-lg-11 border border-1">Date on: 12/5/2024</h6>
+              <h6 class=" mb-0 p-2 bg-light rounded-2 col-lg-11 border border-1">Booking Status: <span class="text-success">Paid</span></h6>
+              <h6 class=" mb-0 p-2 bg-light rounded-2 col-lg-11 border border-1">Payment Status: <span class="text-success">Complete</span></h6>
+              <h6 class=" mb-0 p-2 bg-light rounded-2 col-lg-11 border border-1">Invoice ID: #6525541</h6>
+              <h6 class=" mb-0 p-2 bg-light rounded-2 col-lg-11 border border-1">Hotel Confirmation Number: 156132</h6>
+              <h6 class=" mb-0 p-2 bg-light rounded-2 col-lg-11 border border-1">Guest Nationality: Nationality</h6>
+              <h6 class=" mb-0 p-2 bg-light rounded-2 col-lg-11 border border-1">Rewards Points: 100</h6>
+            </div>
+          </div>
+          <div class="card shadow rounded-2 mt-3">
+              <div class="card-header border-bottom">
+                <h5 class="card-title mb-0">Price Summary</h5>
+              </div>
+
+              <div class="card-body">
+                <ul class="list-group list-group-borderless">
+                  <li
+                    class="list-group-item d-flex justify-content-between align-items-center"
+                  >
+                    <span class="h6 fw-light mb-0">Room Charges</span>
+                    <span class="fs-5">$28,660</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="card-footer border-top">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="h5 mb-0">Total Price</span>
+                  <div class="d-flex flex-column justify-content-between align-items-center">
+                    <span>gomla here</span>
+                    <span class="h5 mb-0">$28,660</span>
+                  </div>
+
+                </div>
+              </div>
+          </div>
+
+
+
+
+        </aside>
+
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Headset icon modal-->
+  <div class="modal fade" id="headset" tabindex="-1" aria-labelledby="headset" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-center text-primary" id="exampleModalLabel">
+            <i class="fa-regular fa-envelope me-1"></i> New Support Message
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex flex-column align-items-center justify-content-between">
+            <p>No Messages yet, Select a Category and Type your Request</p>
+            <div class="mb-3">
+              <select class="form-select" name="" id="">
+                <option value="">Select a Category</option>
+                <option value="">Special Request</option>
+                <option value="">Clients in Hotel Support</option>
+                <option value="">Send Info To Hotel</option>
+                <option value="">Others</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control" style="width: 600px;height: 150px;" name="" id="" placeholder="Message"></textarea>
+            </div>
+            <button class="btn btn-outline-primary">
+              <i class="fa-regular fa-paper-plane me-1"></i> Send
+            </button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--Credit Card icon modal-->
+<div class="modal fade" id="creditcard" tabindex="-1" aria-labelledby="creditcard" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-center text-primary" id="exampleModalLabel">
+           Pay Booking
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex flex-column align-items-center justify-content-between">
+          <h4 class="my-4">Total Price: 200 USD</h4>
+          <div class="mb-3 d-flex flex-column">
+            <button class="btn btn-outline-primary">
+              <i class="fa-solid fa-file-invoice me-1"></i> By Available Balance : 1000 USD
+            </button>
+            <button class="btn btn-outline-primary">
+              <i class="fa-regular fa-credit-card me-1"></i> By Credit Card
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!--Canceled modal-->
+<div class="modal fade" id="canceled" tabindex="-1" aria-labelledby="canceled" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-center text-primary text-danger" id="exampleModalLabel">
+          Cancel Booking
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex flex-column align-items-center justify-content-between">
+          <h6 class="my-4">Do you want To cancel This Booking ?</h6>
+          <p class="text-danger mb-1">if you choosed Cancel,The Action Cannot Be Rolled Back</p>
+          <p class="text-danger mb-3">Cancellation Policy:  Free Charge</p>
+          <div class="mb-3 d-flex">
+            <button class="btn btn-danger me-2">
+              <i class="fa-regular fa-thumbs-up me-1"></i> Yes, Cancel
+            </button>
+            <button class="btn btn-success" data-bs-dismiss="modal">
+              <i class="fa-solid fa-xmark me-1"></i> No Return
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<style>
+  .popover-box {
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    display: none;
+    z-index: 10;
+    white-space: nowrap;
+  }
+
+  #trophy-icon:hover .popover-box {
+    display: block;
+  }
+  #cancel-icon:hover .cancel-box{
+    display: block;
+  }
+  .cancel-box {
+    position: absolute;
+    top: -40px;
+    left: -100px;
+    display: none;
+    z-index: 10;
+    white-space: nowrap;
+  }
+  #visa-icon:hover .visa-box{
+    display: block;
+  }
+  .visa-box {
+    position: absolute;
+    top: -40px;
+    left: -70px;
+    display: none;
+    z-index: 10;
+    white-space: nowrap;
+  }
+
+  #message-icon:hover .message-box{
+    display: block;
+  }
+  .message-box {
+    position: absolute;
+    top: -40px;
+    left: -70px;
+    display: none;
+    z-index: 10;
+    white-space: nowrap;
+  }
+
+  @media (max-width:970px) {
+    .search-button{
+      width: 100%;
+    }
+    .reset-button{
+      width: 100%;
+    }
+  }
+
+</style>

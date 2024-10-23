@@ -1,0 +1,139 @@
+<style>
+  @media(max-width:963px){
+    .view-map-button{
+      margin-top: 7px;
+
+    }
+  }
+  @media(min-width:963px){
+    .view-map-button{
+      margin-left: 7px;
+
+    }
+  }
+  @media(max-width:530px){
+    .hstack{
+     flex-direction: column !important;
+
+    }
+    .view-map-button{
+      margin-left: 7px;
+      margin-top: 0;
+
+    }
+    .htele-section{
+      width: 100% !important;
+      text-align: center;
+    }
+  }
+</style>
+
+
+<list-topbar />
+
+<main>
+  <div class="container">
+    <list-banner />
+  </div>
+
+
+  <!-- =======================
+Hotel list START -->
+  <section class="pt-0">
+    <div class="container">
+      <div class="row mb-4">
+<!--         <div class="col-5">
+            <h5 class=" text-dark ">150 Hotels in New York</h5>
+        </div> -->
+        <div class="col-12">
+          <div
+            class="hstack gap-3 justify-content-between justify-content-md-end align-items-center"
+          >
+          <div class="htele-section col-6 me-4 mt-4">
+            <h4 class=" text-dark ">150 Hotels in New York</h4>
+        </div>
+            <list-filter-offcanvas />
+
+
+              <ul
+              class="nav nav-pills nav-pills-dark d-flex flex-lg-row flex-sm-row"
+              id="tour-pills-tab"
+              role="tablist"
+            >
+              <li class="nav-item">
+                <a
+                  class="nav-link rounded-start rounded-0 mb-0 active"
+                  routerLink="/hotels/list"
+                  ><i class="bi fa-fw bi-list-ul"></i
+                ></a>
+              </li>
+
+              <li class="nav-item">
+                <a
+                  class="nav-link rounded-end rounded-0 mb-0"
+                  routerLink="/hotels/grid"
+                  ><i class="bi fa-fw bi-grid-fill"></i
+                ></a>
+              </li>
+
+              <li class="view-map-button nav-item">
+                <button type="button"
+                  class="nav-link btn rounded-1 mb-0 " data-bs-toggle="modal" data-bs-target="#fullMapModal"
+                  >View Map</button>
+              </li>
+
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <aside class="col-xl-4 col-xxl-3">
+          <list-filterbar />
+        </aside>
+
+        <div class="col-xl-8 col-xxl-9">
+          <list-card />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================
+    Hotel list END -->
+</main>
+<home-list-footer1 />
+
+<!-- Full Screen Map -->
+<div class="modal fade" id="fullMapModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-body p-0" style="height: 80vh;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d49330450.99003098!2d-4.0312181459581335!3d41.005741724159705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sAll%20Hotels!5e0!3m2!1sen!2sin!4v1727111064565!5m2!1sen!2sin"
+        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+        <button type="button" class="btn btn-primary float-end" data-bs-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <style>
+.map-container {
+  width: 100%; /* Make it full width */
+  height: 80vh; /* Set a specific height */
+  margin: 0;
+}
+
+.map-frame {
+  border: 2px solid black;
+  height: 100%; /* Full height of the container */
+}
+
+#map {
+  width: 100%;
+  height: 100%; /* Full height of the frame */
+}
+</style>
+ -->
